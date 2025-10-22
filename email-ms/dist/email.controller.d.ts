@@ -1,3 +1,6 @@
+import { EmailService } from './email.service';
 export declare class EmailController {
-    handleClienteCreado(data: any): void;
+    private readonly emailService;
+    constructor(emailService: EmailService);
+    handleEnviarEmail(data: any): Promise<void>;
 }

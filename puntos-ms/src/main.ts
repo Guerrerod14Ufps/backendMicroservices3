@@ -8,7 +8,7 @@ async function bootstrap() {
     options: {
       urls: ['amqp://user:password@localhost:5672'],
       queue: 'puntos_queue',
-      queueOptions: { durable: false },
+      queueOptions: { durable: true },
     },
   });
 

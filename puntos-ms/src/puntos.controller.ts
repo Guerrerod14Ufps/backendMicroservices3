@@ -1,10 +1,10 @@
 import { Controller } from '@nestjs/common';
-import { EventPattern } from '@nestjs/microservices';
+import { EventPattern, Payload } from '@nestjs/microservices';
 
 @Controller()
 export class PuntosController {
-  @EventPattern('cliente_creado')
-  handleClienteCreado(data: any) {
-    console.log(`🎯 Cliente recibido en PUNTOS: ${data.nombre} (Puntos iniciales: 0)`);
+  @EventPattern('iniciar_puntos') // ⚡ mismo nombre de la cola
+  handleClienteCreado(@Payload() data: any) {
+    console.log(`💰 Puntos: creando cuenta para ${data.name}`);
   }
-}
+} 

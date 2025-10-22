@@ -15,20 +15,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmailController = void 0;
 const common_1 = require("@nestjs/common");
 const microservices_1 = require("@nestjs/microservices");
+const email_service_1 = require("./email.service");
 let EmailController = class EmailController {
-    handleClienteCreado(data) {
-        console.log(`📧 Email: enviando correo de bienvenida a ${data.email}`);
+    emailService;
+    constructor(emailService) {
+        this.emailService = emailService;
+    }
+    async handleEnviarEmail(data) {
+        console.log('📧 Evento recibido en Email MS:', data);
+        await this.emailService.enviarEmailBienvenida(data);
     }
 };
 exports.EmailController = EmailController;
 __decorate([
-    (0, microservices_1.EventPattern)('cliente_creado'),
+    (0, microservices_1.EventPattern)('enviar_email_bienvenida'),
     __param(0, (0, microservices_1.Payload)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
-], EmailController.prototype, "handleClienteCreado", null);
+    __metadata("design:returntype", Promise)
+], EmailController.prototype, "handleEnviarEmail", null);
 exports.EmailController = EmailController = __decorate([
-    (0, common_1.Controller)()
+    (0, common_1.Controller)(),
+    __metadata("design:paramtypes", [email_service_1.EmailService])
 ], EmailController);
 //# sourceMappingURL=email.controller.js.map

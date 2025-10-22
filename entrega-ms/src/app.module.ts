@@ -3,5 +3,6 @@ import { EntregaController } from './entrega.controller';
 
 @Module({
   controllers: [EntregaController],
-})
+}) 
 export class AppModule {}
+ 

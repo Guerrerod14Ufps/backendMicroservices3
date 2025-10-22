@@ -18,6 +18,7 @@ const microservices_1 = require("@nestjs/microservices");
 let ClienteController = class ClienteController {
     puntosClient;
     emailClient;
+    entregaClient;
     constructor() {
         this.puntosClient = microservices_1.ClientProxyFactory.create({
             transport: microservices_1.Transport.RMQ,
@@ -33,11 +34,19 @@ let ClienteController = class ClienteController {
                 queue: 'email_queue',
             },
         });
+        this.entregaClient = microservices_1.ClientProxyFactory.create({
+            transport: microservices_1.Transport.RMQ,
+            options: {
+                urls: ['amqp://user:password@localhost:5672'],
+                queue: 'entrega_queue',
+            },
+        });
     }
     async crearCliente(data) {
         console.log('📨 Cliente creado:', data);
-        this.puntosClient.emit('cliente_creado', data);
+        this.puntosClient.emit('iniciar_puntos', data);
         this.emailClient.emit('enviar_email_bienvenida', data);
+        this.entregaClient.emit('entrega_nuevo', data);
         return { message: 'Cliente creado exitosamente', cliente: data };
     }
     async listarClientes() {

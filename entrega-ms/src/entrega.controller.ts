@@ -3,8 +3,8 @@ import { EventPattern, Payload } from '@nestjs/microservices';
 
 @Controller()
 export class EntregaController {
-  @EventPattern('cliente_creado')
+  @EventPattern('entrega_nuevo')
   handleClienteCreado(@Payload() data: any) {
-    console.log(`📦 Entrega: creando envío pendiente para el cliente ${data.nombre}`);
+    console.log(`📦 Entrega: creando envío pendiente para el cliente ${data.name}`);
   }
 }

@@ -17,12 +17,12 @@ const common_1 = require("@nestjs/common");
 const microservices_1 = require("@nestjs/microservices");
 let EntregaController = class EntregaController {
     handleClienteCreado(data) {
-        console.log(`📦 Entrega: creando envío pendiente para el cliente ${data.nombre}`);
+        console.log(`📦 Entrega: creando envío pendiente para el cliente ${data.name}`);
     }
 };
 exports.EntregaController = EntregaController;
 __decorate([
-    (0, microservices_1.EventPattern)('cliente_creado'),
+    (0, microservices_1.EventPattern)('entrega_nuevo'),
     __param(0, (0, microservices_1.Payload)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
