@@ -1,0 +1,14 @@
+{
+  "name": "microservicios-nest",
+  "private": true,
+  "scripts": {
+    "start:cliente": "cd cliente-ms && npm run start:dev",
+    "start:puntos": "cd puntos-ms && npm run start:dev",
+    "start:entrega": "cd entrega-ms && npm run start:dev",
+    "start:email": "cd email-ms && npm run start:dev",
+    "start:all": "concurrently \"npm run start:cliente\" \"npm run start:puntos\" \"npm run start:entrega\" \"npm run start:email\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
